@@ -1,0 +1,4 @@
+baseURL = "http://coeus.bizkt.com.au/"
+languageCode = "en-us"
+title = "Coeus | The Ultimate Learning Platform"
+theme = "ananke"

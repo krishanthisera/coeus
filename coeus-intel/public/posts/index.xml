@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Coeus | The Ultimate Learning Platform</title>
+    <link>http://coeus.bizkt.com.au/posts/</link>
+    <description>Recent content in Posts on Coeus | The Ultimate Learning Platform</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Dec 2020 15:20:43 +1030</lastBuildDate><atom:link href="http://coeus.bizkt.com.au/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Perl Db Transaction</title>
+      <link>http://coeus.bizkt.com.au/posts/perl-db-transaction/</link>
+      <pubDate>Wed, 16 Dec 2020 15:20:43 +1030</pubDate>
+      
+      <guid>http://coeus.bizkt.com.au/posts/perl-db-transaction/</guid>
+      <description>Note that the original post can be found in blog.bizkt.com.au and the content of the post has not been update by the author.
+To understand what is a database transaction lets look at a simple bank withdrawal and deposit scenario. Assume that you have two bank accounts call A and B, and you need withdraw some amount from account A and Deposit it on account B. In this scenario what happen if you couldn&amp;rsquo;t withdraw money from your account A, the deposit part won&amp;rsquo;t carry out.</description>
+    </item>
+    
+  </channel>
+</rss>
