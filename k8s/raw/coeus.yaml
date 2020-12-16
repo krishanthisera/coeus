@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coeus-cluster-ip
+  namespace: coeus
+spec:
+  selector:
+    app: coeus-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: coeus-ingress
+  namespace: coeus
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+  - host: coeus.bizkt.com.au
+    http:
+      paths:
+      - backend:
+          serviceName: coeus-cluster-ip
+          servicePort: 80
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - coeus.bizkt.com.au
+    secretName: coeus-certman
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: coeus-app
+    version: "0.1"
+  name: coeus
+  namespace: coeus  
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: coeus-app
+  template:
+    metadata:
+      labels:
+        app: coeus-app
+        version: "0.1"
+    spec:
+      containers:
+      - name: app
+        image: shipping.bizkt.com.au:443/coeus/coeus:0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "250m"
+          limits:
+            memory: "200Mi"
+            cpu: "500m"
+      imagePullSecrets:
+      - name: shipping
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: payload
+                operator: NotIn
+                values:
+                - automation
+                - operation 
+                - management
