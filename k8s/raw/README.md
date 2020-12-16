@@ -1,6 +1,6 @@
-#Purpose
+# Purpose
 This an static representation of the Kubernetes resources. To deploy in the production please refer the Helm implementation.
-#Dependencies
+# Dependencies
 Following implementations should be available in your Kubernetes cluster in order to deploy the application successfully.
 1. Ingress controller
 2. Kubernetes Certmanager 
@@ -10,7 +10,7 @@ Following implementations should be available in your Kubernetes cluster in orde
 Note that, a private registry (`shipping.bizkt.com.au:443`) which has been hosted on the same Kubernetes cluster has been used as the primary docker registry.
 
 
-#Node Affinity
+# Node Affinity
 Node Affinities has been used to isolate the application workload from management services.
 ```sh
 affinity:
