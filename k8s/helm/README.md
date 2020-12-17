@@ -4,7 +4,7 @@ To package and to simplify the solution, this Helm chart has been created. Using
 # Dependencies
 Following implementations should be available in your Kubernetes cluster in order to deploy the application successfully.
 1. Ingress controller
-2. Kubernetes Certmanager 
+2. Kubernetes Cert-manager 
 3. A Kubernetes namespace call `coeus`
 4. A docker-secret to pull the image from you private registry
 

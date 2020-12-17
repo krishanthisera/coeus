@@ -1,9 +1,9 @@
 # Purpose
-This an static representation of the Kubernetes resources. To deploy in the production please refer the Helm implementation.
+This an static representation of the Kubernetes resources. To deploy in the production please refer the [Helm implementation].
 # Dependencies
 Following implementations should be available in your Kubernetes cluster in order to deploy the application successfully.
 1. Ingress controller
-2. Kubernetes Certmanager 
+2. Kubernetes Cert-manager 
 3. A Kubernetes namespace call `coeus`
 4. A docker-secret to pull the image from you private registry
 
@@ -35,3 +35,5 @@ affinity:
               - operation
               - management 
 ```
+
+[Helm implementation]: https://github.com/krishanthisera/coeus/tree/master/k8s/helm
