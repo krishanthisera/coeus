@@ -36,6 +36,8 @@ Nginx ingress controller has been used to manage (Load Balance) the web traffic 
 # Jenkins Automation
 Jenkins has been used to stream line the deployment process. Especially, Jenkins server is hosted in the same Kubernetes cluster which reduce the overhead of the maintenance.
 
+![Build Pipe][jenkins-pipeline]]
+
 Jenkins Kubernetes plugin has been used to build/ship the images and to deploy the Kubernetes resources. [jenkins-build.yaml] describes the template of the Jenkins agent POD which executes the Jenkins jobs on the Kubernetes cluster.
 
 Note that, It has been identified that utilizing the automation/control workloads on the nodes which also utilize the production workloads is risky. For instance, some of the Jenkins PODs, in this case the POD which executes the Docker builds is running as a privileged container which could raised security concerns. Due to that, using **node affinities** PODs are scheduled in manner that they respect this separation. On the other hand this separation minimize the concerns of resource outages on the nodes which utilize the production workload.
