@@ -8,19 +8,19 @@ _Please note that [metric server] should be running on the K8s cluster to HPA to
 autoscaling:
   enabled: true
 ```
-Both data and management payload (PODs) scheduling have been separated using **affinities**. Optionally, 'Kubernetes taint & tolerations' can be used depending on the context.
+Both data and management payloads (PODs) scheduling have been separated using **affinities**. Optionally, 'Kubernetes taint & tolerations' can be used depending on the context.
 
 ## Kubernetes Constraints
-It has been assumed that the K8s cluster is secure enough for the payload. If it's must to ensure the security of 'service to service' (POD to POD) communication, it is recommended to follow secured approach such as Mutual TLS(mTLS). Service meshes like [Linkerd], [Istio], [Consul] provide the mTLS features.
+It has been assumed that the K8s cluster is secure enough for the payload. If it's must to ensure the security of 'service to service' (POD to POD) communication, it is recommended to follow a secured approach such as Mutual TLS(mTLS). Service meshes like [Linkerd], [Istio], [Consul] provide the mTLS features.
 
-_Note that In the context of service meshes, cost and complexity of the implementation are significant._
+_Note that In the context of service meshes, cost and complexity of the implementations are significant._
 
 As it obvious Kubernetes secrets are not encrypted. In this context, a couple of Kubernetes secrets have been used (implicitly or explicitly)
 1. Docker registry credentials
 2. Cert-manager SSL Certificates
 3. Secret associate with Kubernetes Service accounts (SA) - Service account token Secrets and etc.
     Ex. to retrieve the Secrete associated to 'Jenkins' SA:
-    `$kubectl get secret $(kubectl get sa jenkins -n jenkins -o jsonpath={.secrets[0].name}) -n jenkins -o jsonpath={.data.token} | base64 --decode)`
+`$kubectl get secret $(kubectl get sa jenkins -n jenkins -o jsonpath={.secrets[0].name}) -n jenkins -o jsonpath={.data.token} | base64 --decode)`
 
 # Helm
 To package and to simplify the solution, a Helm chart has been created. Using the values defined in the [/k8s/helm/coeus/values.yaml] file, deployment can be customized. Further, for the readability, a static(raw) manifest file has been provided in [/k8s/raw/coeus.yaml]
@@ -34,7 +34,7 @@ This implementation consider to be cost effective in a situation where it has mo
 Nginx ingress controller has been used to manage (Load Balance) the web traffic to the services in the cluster. Parallel to the Ingress controller, the cert-manager implementation has been used to automated the SSL certificate management. In this manner, without any human intervention certificate will be rotated.
 
 # Jenkins Automation
-Jenkins has been used to stream line the deployment process. Especially, Jenkins server is hosted in the same Kubernetes cluster which reduce the overhead of the maintenance.
+Jenkins has been used to streamline the deployment process. Especially, Jenkins server is hosted in the same Kubernetes cluster which reduce the overhead of the maintenance.
 
 ![Build Pipe][jenkins-pipeline]]
 
