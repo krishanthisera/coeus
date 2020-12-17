@@ -7,6 +7,7 @@ pipeline {
         RELEASE_NAME = 'coeus-app' 
         RELEASE_NAMESPACE = 'coeus'
         APP_VERSION = '0.1'
+        GIT_REPO = 'https://github.com/krishanthisera/coeus.git'
     }
     agent {
         kubernetes {
@@ -16,7 +17,7 @@ pipeline {
     stages {
         stage("Checkout Source") {
             steps {
-                git credentialsId: 'git-fcc', url: 'https://github.com/krishanthisera/coeus.git'
+                git credentialsId: 'git-fcc', url: '${GIT_REPO}'
              }
         }
         stage('Docker Build') {
