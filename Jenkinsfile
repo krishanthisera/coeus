@@ -17,7 +17,7 @@ pipeline {
     stages {
         stage("Checkout Source") {
             steps {
-                git credentialsId: 'git-fcc', url: '${GIT_REPO}'
+                git credentialsId: 'git-fcc', url: "${GIT_REPO}"
              }
         }
         stage('Docker Build') {
