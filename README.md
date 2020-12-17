@@ -1,7 +1,7 @@
 # Coeus
 [![Build Pipe][jenkins-badge]][jenkins]
 
-This is a sample Kubernetes deployment associated with Jenkins automation. The payload of this application is a static web application created using [Hugo]. 
+This is a sample Kubernetes deployment associated with Jenkins automation. The payload of this application is a static web application created using [Hugo].
 
 _Note that for the design decisions and design constraints please refer: [docs/SPECS.md]_
 
