@@ -10,7 +10,6 @@ pipeline {
     }
     agent {
         kubernetes {
-            defaultContainer 'jnlp'
             yamlFile 'jenkins-build.yaml'
         }
     }
@@ -38,15 +37,16 @@ pipeline {
         }
         stage('Kubernetes Deploy') {
             steps{
-                try{
-                    container('helm') {
-                            sh "helm upgrade --install '${RELEASE_NAME}' --set app.image.repository='${DOCKER_REPO}' --set app.image.tag='${APP_VERSION}.${BUILD_NUMBER}' --namespace '${RELEASE_NAMESPACE}' '${HELM_DIR}'"
-                    }
-                } catch (exec) {
+                container('helm') {
+                        sh "helm upgrade --install '${RELEASE_NAME}' --set app.image.repository='${DOCKER_REPO}' --set app.image.tag='${APP_VERSION}.${BUILD_NUMBER}' --namespace '${RELEASE_NAMESPACE}' '${HELM_DIR}'"
+                }
+            }
+            post{
+                failure{
                     container('helm') {
                             sh "helm install --set app.image.repository='${DOCKER_REPO}' --set app.image.tag='${APP_VERSION}.${BUILD_NUMBER}' '${RELEASE_NAME}' --namespace '${RELEASE_NAMESPACE}' '${HELM_DIR}'" 
                     }
-                }   
+                }
             }    
         }
     }
