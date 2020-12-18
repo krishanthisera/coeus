@@ -1,4 +1,4 @@
-baseURL = "http://localhost/"
+baseURL = "https://coeus.bizkt.com.au/"
 languageCode = "en-us"
 title = "Coeus | The Ultimate Learning Platform"
 theme = "ananke"
